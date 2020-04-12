@@ -1,0 +1,715 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="经典控制理论,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="最近正在学习 Brain Douglas 的 Classical Control Theroy 系列视频，顺便整理了笔记。本文是我学习01节 Why Learn Control Theroy 的笔记。">
+<meta name="keywords" content="经典控制理论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01 Why Learn Control Theroy">
+<meta property="og:url" content="http://yoursite.com/2020/02/18/Classical-Control-Theroy/Classcial-Control-Theroy-01/index.html">
+<meta property="og:site_name" content="Geds&#39;s Blog">
+<meta property="og:description" content="最近正在学习 Brain Douglas 的 Classical Control Theroy 系列视频，顺便整理了笔记。本文是我学习01节 Why Learn Control Theroy 的笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-19T12:24:39.411Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="01 Why Learn Control Theroy">
+<meta name="twitter:description" content="最近正在学习 Brain Douglas 的 Classical Control Theroy 系列视频，顺便整理了笔记。本文是我学习01节 Why Learn Control Theroy 的笔记。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/02/18/Classical-Control-Theroy/Classcial-Control-Theroy-01/">
+
+
+
+
+
+  <title> 01 Why Learn Control Theroy | Geds's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Geds's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/18/Classical-Control-Theroy/Classcial-Control-Theroy-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Geds">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/my_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geds's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                01 Why Learn Control Theroy
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-18T11:59:19+08:00">
+                2020-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近正在学习 <a href="https://www.youtube.com/user/ControlLectures" target="_blank" rel="noopener">Brain Douglas</a> 的 <a href="https://www.youtube.com/playlist?list=PLUMWjy5jgHK1NC52DXXrriwihVrYZKqjk" target="_blank" rel="noopener">Classical Control Theroy</a> 系列视频，顺便整理了笔记。本文是我学习01节 <a href="https://www.youtube.com/watch?v=oBc_BHxw78s&list=PLUMWjy5jgHK1NC52DXXrriwihVrYZKqjk&index=2&t=0s" target="_blank" rel="noopener">Why Learn Control Theroy</a> 的笔记。</p>
+<a id="more"></a>
+
+<p>作者制作该系列视频的目的是帮助菜鸟对控制理论具有直观的理解。作者讲述得深入浅出，并辅以动画，趣味性十足。视频总时长约9小时。可以作为经典控制理论的入门视频。</p>
+<h3 id="为什么要学习控制理论？"><a href="#为什么要学习控制理论？" class="headerlink" title="为什么要学习控制理论？"></a>为什么要学习控制理论？</h3><p>因为控制理论是一种通用的理论，在很多工程领域都有应用。如果我们能够理解控制理论思想，夯实控制理论基础，我们就可以理解和求解不同工程领域的实际问题。例如：</p>
+<ul>
+<li><p><strong>电子工程师</strong>。几乎在所有的电子设备中，都依赖于“反馈”。如开发一个开关电源调节器（switching power regulators）就需要反馈，如果设计的不正确，就不能保证设备稳定。</p>
+</li>
+<li><p><strong>通信工程师</strong>。如设计一个自动增益控制电路（automatic gain control circuit），其能够在弱信号时自动增加增益，在强信号时自动减小增益。</p>
+</li>
+<li><p><strong>机械工程师</strong>。为了抑制机械结构中的振动，需要在发动机机架上安装一个isolation system，以减小系统对振动的敏感性。</p>
+</li>
+<li><p><strong>土木工程师</strong>。可能需要为高楼和地震区搭建一个阻尼系统。</p>
+</li>
+<li><p><strong>工业工程师</strong>。可能需要设计机器人装配生产线，在机器人应用中，调节PID参数是很常见的。</p>
+</li>
+<li><p><strong>航空工程师</strong>。可能需要解决飞机机翼与空气交互产生的震颤问题。 </p>
+</li>
+</ul>
+<p>上面所列举的例子都是涉及控制理论的一些工程领域，然而，对于日常生活中事物，控制理论也会提供一些新的见解。</p>
+<p>例如，当你将玻璃酒杯倾斜向下放置在桌面上，由于杯脚与桌面接触而产生具有不同频率的声波。我们的生活经验告诉我们酒杯的振动模式，即随着声波的衰减，声波振动的幅值变得越来越小。当你用手指接触这个玻璃酒杯时，相当于增加了系统的阻尼，使得系统能量随着声音的衰弱而衰减得更快。</p>
+<p>或许，你已经意识到一个正在振动着的玻璃酒杯本质上和<em>半球形谐振陀螺仪</em>（hemispherical resonator gyroscopes, HRG）具有相同的技术，这种技术常用在潜水艇或卫星中，用来计算位置。当你在手指上缓慢地旋转振动的玻璃酒杯，你可以感受到振动驻波（standing wave）以一种不同的频率在旋转，这种现象是由于科氏力（Coriolis force）的作用。是的，科氏效益（Coriolis effect）可以在像地球这样的旋转坐标系中观测到，这种效应决定了南、北半球的大风的旋转方向。你可能想知道驱动地球上整个天气系统的高度复杂的微分方程长啥样，以及想知道是否可以将整个天气系统的一部分近似为低阶常微分方程，这样你就可以进行计算机仿真，以对全球天气模式的进行基本预测。</p>
+<p>通过上述例子，你应该已经看到，控制理论的应用不仅仅是调节PID控制器参数，或是让一个倒立摆立着不倒。控制理论还可以是：</p>
+<ul>
+<li>为一个系统建立模型。</li>
+<li>用该模型来仿真这个系统，从而可以对系统的行为进行预测。</li>
+<li>帮助我们理解系统的dynamics，以及该系统如何与其他系统进行交互的。</li>
+<li>过滤噪声，排除外部扰动。</li>
+<li>帮助选择和搭建硬件，如设计或选择合适的传感器和执行器（actuators）。</li>
+<li>测试系统，以确保系统能在未知环境中仍然能执行正确的行为。</li>
+<li>最终，帮助我们理解系统的本质和底层逻辑。</li>
+</ul>
+<p>关于上述的这些例子，你都可以从这个系列视频中得到不同层次的见解。你不需要扎实的数学基础，就像当你的手指放在玻璃酒杯中，你正在从系统中移除能量。你只需要知道它与你想完成的事之间的联系，以及去哪儿学习更多的相关知识。而观看这个系列视频是个好的开端，你可以提问一些问题，与其他同学讨论，以及回答别人的问题，在这个过程中加深对控制理论的理解。另外，建议针对同一个知识点寻找不同的资源以获得不同的观点，这样能理解得更深刻。</p>
+<p>下面是在这个视频中所谈到的话题的一些补充:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=iTFZNrTYp3k" target="_blank" rel="noopener">Aircraft Flutter</a>  </li>
+<li><a href="https://www.youtube.com/watch?v=McmtOxW7Tz0" target="_blank" rel="noopener">Wine Glass vibrating</a>  </li>
+<li><a href="https://www.youtube.com/redirect?redir_token=G70lQ-2xa6R1hBYZW9dgqZ1I1kp8MTU4MjE4NDI0NEAxNTgyMDk3ODQ0&v=oBc_BHxw78s&q=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FHemispherical_resonator_gyroscope&event=video_description" target="_blank" rel="noopener">HRG</a> </li>
+<li><a href="https://www.youtube.com/watch?v=rdGtcZSFRLk" target="_blank" rel="noopener">Coriolis Effect</a>  </li>
+<li><a href="https://www.youtube.com/redirect?redir_token=G70lQ-2xa6R1hBYZW9dgqZ1I1kp8MTU4MjE4NDI0NEAxNTgyMDk3ODQ0&v=oBc_BHxw78s&q=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FPrimitive_equations&event=video_description" target="_blank" rel="noopener">Primitive Equations</a>  </li>
+<li><a href="https://www.youtube.com/redirect?redir_token=G70lQ-2xa6R1hBYZW9dgqZ1I1kp8MTU4MjE4NDI0NEAxNTgyMDk3ODQ0&v=oBc_BHxw78s&q=http%3A%2F%2Fcds.linear.com%2Fdocs%2Fen%2Fapplication-note%2Fan25fa.pdf&event=video_description" target="_blank" rel="noopener">Switching Power Regulators</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/经典控制理论/" rel="tag"># 经典控制理论</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/06/Blog_Skills/使用Hexo博客框架创作自己的第一篇博客/" rel="next" title="使用Hexo博客框架创作自己的第一篇博客">
+                <i class="fa fa-chevron-left"></i> 使用Hexo博客框架创作自己的第一篇博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/19/Classical-Control-Theroy/Classical-Control-Theory-02/" rel="prev" title="02 Closed Loop Control">
+                02 Closed Loop Control <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/my_avatar.jpg" alt="Geds">
+          <p class="site-author-name" itemprop="name">Geds</p>
+           
+              <p class="site-description motion-element" itemprop="description">以终为始</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要学习控制理论？"><span class="nav-number">1.</span> <span class="nav-text">为什么要学习控制理论？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Geds</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>

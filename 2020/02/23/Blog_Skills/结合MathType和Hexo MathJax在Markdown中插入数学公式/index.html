@@ -1,0 +1,801 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Blog,MathJax,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="在博客写作过程中，经常需要往文章中插入数学公式，我们自然希望能使用MathType编辑公式，并往文章中插入LaTex语法的公式。然而，如果使用Hexo部署博客，Hexo自带的默认渲染引擎hexo-renderer-marked无法渲染LaTex公式。本文告诉你：  如何用MathJax插件渲染数学公式； 以及如何处理Hexo默认渲染引擎hexo-renderer-marked与MathJax之间的">
+<meta name="keywords" content="Blog,MathJax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="结合MathType和Hexo MathJax在Markdown中插入数学公式">
+<meta property="og:url" content="http://yoursite.com/2020/02/23/Blog_Skills/结合MathType和Hexo MathJax在Markdown中插入数学公式/index.html">
+<meta property="og:site_name" content="Geds&#39;s Blog">
+<meta property="og:description" content="在博客写作过程中，经常需要往文章中插入数学公式，我们自然希望能使用MathType编辑公式，并往文章中插入LaTex语法的公式。然而，如果使用Hexo部署博客，Hexo自带的默认渲染引擎hexo-renderer-marked无法渲染LaTex公式。本文告诉你：  如何用MathJax插件渲染数学公式； 以及如何处理Hexo默认渲染引擎hexo-renderer-marked与MathJax之间的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://q5zsuehvp.bkt.clouddn.com/Blog-insert_equations_in_markdown-MathType-cut-and-copy.jpg">
+<meta property="og:updated_time" content="2020-02-23T10:26:43.744Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="结合MathType和Hexo MathJax在Markdown中插入数学公式">
+<meta name="twitter:description" content="在博客写作过程中，经常需要往文章中插入数学公式，我们自然希望能使用MathType编辑公式，并往文章中插入LaTex语法的公式。然而，如果使用Hexo部署博客，Hexo自带的默认渲染引擎hexo-renderer-marked无法渲染LaTex公式。本文告诉你：  如何用MathJax插件渲染数学公式； 以及如何处理Hexo默认渲染引擎hexo-renderer-marked与MathJax之间的">
+<meta name="twitter:image" content="http://q5zsuehvp.bkt.clouddn.com/Blog-insert_equations_in_markdown-MathType-cut-and-copy.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/02/23/Blog_Skills/结合MathType和Hexo MathJax在Markdown中插入数学公式/">
+
+
+
+
+
+  <title> 结合MathType和Hexo MathJax在Markdown中插入数学公式 | Geds's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Geds's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/23/Blog_Skills/结合MathType和Hexo MathJax在Markdown中插入数学公式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Geds">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/my_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geds's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                结合MathType和Hexo MathJax在Markdown中插入数学公式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-23T15:44:53+08:00">
+                2020-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在博客写作过程中，经常需要往文章中插入数学公式，我们自然希望能使用<code>MathType</code>编辑公式，并往文章中插入<code>LaTex</code>语法的公式。然而，如果使用<code>Hexo</code>部署博客，<code>Hexo</code>自带的默认渲染引擎<a href="https://github.com/hexojs/hexo-renderer-marked" target="_blank" rel="noopener">hexo-renderer-marked</a>无法渲染<code>LaTex</code>公式。本文告诉你：</p>
+<ol>
+<li>如何用<code>MathJax</code>插件渲染数学公式；</li>
+<li>以及如何处理<code>Hexo</code>默认渲染引擎<code>hexo-renderer-marked</code>与<code>MathJax</code>之间的冲突的；</li>
+<li>如何将用<code>MathType</code>编辑好的公式复制粘贴到markdown中。</li>
+</ol>
+<a id="more"></a>
+
+<h3 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h3><h4 id="安装和配置hexo-math"><a href="#安装和配置hexo-math" class="headerlink" title="安装和配置hexo-math"></a>安装和配置<code>hexo-math</code></h4><ul>
+<li><p>首先，安装<a href="https://github.com/hexojs/hexo-math" target="_blank" rel="noopener">hexo-math</a>插件，该插件使用<code>MathJax/KaTex</code>来渲染数学公式:</p>
+<blockquote>
+<p><code>$ npm install hexo-math --save</code></p>
+</blockquote>
+</li>
+<li><p>安装完成后，配置hexo目录下的<code>_config.yml</code>,加入下面配置信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">math:</span><br><span class="line">  engine: &apos;mathjax&apos;</span><br><span class="line">  mathjax:</span><br><span class="line">    src: custom_mathjax_source</span><br><span class="line">    config:</span><br><span class="line">      # MathJax config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另外，打开文件<code>themes/next/_config.yml</code>，并搜索关键词<code>math</code> ，你将会看到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mathjax:</span><br><span class="line">  enable: false</span><br><span class="line">  per_page: false</span><br><span class="line">  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span><br></pre></td></tr></table></figure>
+
+<p>改变<code>enable</code>标签的值为<code>true</code>，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mathjax:</span><br><span class="line">  enable: true</span><br><span class="line">  per_page: false</span><br><span class="line">  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="更改Hexo渲染引擎"><a href="#更改Hexo渲染引擎" class="headerlink" title="更改Hexo渲染引擎"></a>更改<code>Hexo</code>渲染引擎</h4><ul>
+<li>更改<code>Hexo</code>的渲染引擎。将<code>Hexo</code>的默认渲染引擎是<code>hexo-renderer-marked</code>替换为<a href="https://github.com/sun11/hexo-renderer-kramed" target="_blank" rel="noopener">hexo-renderer-kramed</a>。之所以这么做，是因为<code>Hexo</code>默认渲染引擎会将<code>$$</code>之间的下划线 <code>_</code> 解析成<code>HTML</code>中的<code>&lt;i&gt;</code>。然而，在<code>LaTex</code>公式中，经常用下划线 <code>_</code> 表示下标，这就导致冲突。而<code>hexo-renderer-kramed</code>在<code>hexo-renderer-marked</code>基础上修改了这个Bug。在安装<code>hexo-renderer-kramed</code>之前，需要卸载<code>hexo-renderer-marked</code>，顺序执行以下两行命令完成卸载与安装：<blockquote>
+<p><code>$ npm uninstall hexo-renderer-marked --save</code><br><code>$ npm install hexo-renderer-kramed --save</code></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="解决语义冲突"><a href="#解决语义冲突" class="headerlink" title="解决语义冲突"></a>解决语义冲突</h4><ul>
+<li><p>解决语义冲突（参考的这个<a href="https://tech.zealscott.com/misc/hexo-latex/" target="_blank" rel="noopener">博客</a>）。在markdown中，斜体用下划线<code>_</code>或星号<code>*</code>表示，而在<code>LaTex</code>中，下划线<code>_</code>表示下标。为了解决这个冲突，需要修改两处。在博客根目录下，进入<code>node_modules\kramed\lib\rules\inline.js</code>，修改第11行escape变量的值（这一步是在原基础上对<code>,{,}</code>的<code>转义(escape)</code>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">修改前：escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span><br><span class="line">修改后：escape: /^\\([`*\[\]()#$+\-.!_&gt;])/,</span><br></pre></td></tr></table></figure>
+
+<p>同时，把第20行的<code>em</code>变量也做相应的修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">修改前：em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br><span class="line">修改后：em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="在博客开头打开mathjax开关"><a href="#在博客开头打开mathjax开关" class="headerlink" title="在博客开头打开mathjax开关"></a>在博客开头打开<code>mathjax</code>开关</h4><ul>
+<li>最后，在博客的Front-matter里，添加一行<code>mathjax: true</code>，如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: xxxxxxxxxxxxxxx</span><br><span class="line">date: 2020-02-22 15:44:53</span><br><span class="line">tags: xxx</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><h4 id="公式单行居中显示"><a href="#公式单行居中显示" class="headerlink" title="公式单行居中显示"></a>公式单行居中显示</h4><p>完成上述步骤，我们可以试试效果。我们键入下面的<code>LaTex</code>公式：</p>
+<blockquote>
+<p><code>$$ evidence_{i}=\sum_{j}W_{ij}x_{j}+b_{i} $$</code></p>
+</blockquote>
+<p><code>LaTex</code>公式两端的<code>$$</code>表示公式<code>居中显示</code>，效果如下：</p>
+<p>$$ evidence_{i}=\sum_{j}W_{ij}x_{j}+b_{i} $$</p>
+<h4 id="公式嵌入到句子中"><a href="#公式嵌入到句子中" class="headerlink" title="公式嵌入到句子中"></a>公式嵌入到句子中</h4><p>若想在一句话中<code>嵌入公式</code>，则只需要在<code>LaTex</code>公式两端用一个<code>$</code>，如：</p>
+<blockquote>
+<p>在公式<code>$ evidence_{i}=\sum_{j}W_{ij}x_{j}+b_{i} $</code>中，<code>$W_i$</code>和<code>$b_i$</code>分别为类别$i$的权值和偏置。 </p>
+</blockquote>
+<p>效果如下：</p>
+<p>在公式 $ evidence_{i}=\sum_{j}W_{ij}x_{j}+b_{i} $ 中，$W_i$和$b_i$分别为类别$i$的权值和偏置。</p>
+<h3 id="与MathType结合使用"><a href="#与MathType结合使用" class="headerlink" title="与MathType结合使用"></a>与MathType结合使用</h3><p>对于比较复杂的公式，用<code>LaTex</code>语法直接写很麻烦，所以我尝试先使用<code>MathType</code>将公式写好，再复制公式，并以<code>LaTex</code>格式粘贴到markdown中。按照MathType<a href="https://docs.wiris.com/en/mathtype/mathtype_desktop/mathjax#write_equations_for_a_mathjax-enabled_website" target="_blank" rel="noopener">官方教程</a>，对<code>Preferences</code>下的<code>Cut and Copy Preferences</code>进行设置。如下图：</p>
+<div align="center">
+  <img src="http://q5zsuehvp.bkt.clouddn.com/Blog-insert_equations_in_markdown-MathType-cut-and-copy.jpg" width="450" alt="设置Cut and Copy Preferences">
+</div>
+
+<p>我尝试了多种粘贴方式，包括<code>Plain TeX</code>，<code>LaTex2.09 and later</code>，<code>MathJax:LaTex</code>,但运行<code>hexo g</code>之后，总是出现这个错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">INFO  [hexo-math] Using engine &apos;mathjax&apos;</span><br><span class="line">INFO  Start processing</span><br><span class="line">FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line">Template render error: (unknown path) [Line 52, Column 56]</span><br><span class="line">  expected variable end</span><br></pre></td></tr></table></figure>
+
+<p>后来我发现当有多个花括号，如` }} `或` {{ `，在一起时，就会报<code>Template render error</code>错误。最后在<a href="https://www.jianshu.com/p/738ebe02029b" target="_blank" rel="noopener">这篇博客</a>中找到了解决办法。即，在公式的前后分别加上<code>raw</code>和<code>endraw</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw%&#125; 公式 &#123;% endraw %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体地，如下所示：</p>
+<ul>
+<li><p>以<code>LaTex2.09 and later</code>或<code>MathJax:LaTex</code>方式粘贴:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw%&#125; \[&#123;x_&#123;1,2&#125;&#125; = \frac&#123;&#123; - b \pm \sqrt &#123;&#123;b^2&#125; - 4ac&#125; &#125;&#125;&#123;&#123;2a&#125;&#125;\] &#123;% endraw %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果为：</p>
+</li>
+</ul>
+ \[{x_{1,2}} = \frac{{ - b \pm \sqrt {{b^2} - 4ac} }}{{2a}}\] 
+
+<ul>
+<li><p>以Plain Tex方式粘贴：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw%&#125; $$&#123;x_&#123;1,2&#125;&#125; = &#123;&#123; - b \pm \sqrt &#123;&#123;b^2&#125; - 4ac&#125; &#125; \over &#123;2a&#125;&#125;$$ &#123;% endraw %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果为：</p>
+ $${x_{1,2}} = {{ - b \pm \sqrt {{b^2} - 4ac} } \over {2a}}$$ 
+</li>
+<li><p>在句子中间粘贴：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">公式在句子中显示：&#123;% raw%&#125; $&#123;x_&#123;1,2&#125;&#125; = &#123;&#123; - b \pm \sqrt &#123;&#123;b^2&#125; - 4ac&#125; &#125; \over &#123;2a&#125;&#125;$ &#123;% endraw %&#125;。</span><br></pre></td></tr></table></figure>
+
+<p>效果为：</p>
+<blockquote>
+<p>公式在句子中显示： ${x_{1,2}} = {{ - b \pm \sqrt {{b^2} - 4ac} } \over {2a}}$ 。</p>
+</blockquote>
+</li>
+</ul>
+<p>至此，我们可以结合<code>MathType</code>在博客中写出各种数学公式啦！</p>
+<p><strong>参考链接</strong></p>
+<ol>
+<li><a href="https://github.com/hexojs/hexo-math" target="_blank" rel="noopener">hexo-math</a></li>
+<li><a href="https://tech.zealscott.com/misc/hexo-latex/" target="_blank" rel="noopener">Hexo 下 LaTeX 无法显示的解决方案</a></li>
+<li><a href="https://joejztang.github.io/2018/03/22/working-with-math-equations-in-hexo-next-theme/" target="_blank" rel="noopener">working with math equations in hexo next theme</a></li>
+<li><a href="https://typewind.github.io/2017/03/12/mathjax/" target="_blank" rel="noopener">Using Hexo MathJax and Writing LaTex Equations</a></li>
+<li><a href="https://www.dazhuanlan.com/2019/10/05/5d97e9fc3f8e8/" target="_blank" rel="noopener">hexo在遇到“{{”符号时出现解析报错</a></li>
+<li><a href="https://www.jianshu.com/p/738ebe02029b" target="_blank" rel="noopener">Hexo的一个小BUG(Template render error)</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Blog/" rel="tag"># Blog</a>
+          
+            <a href="/tags/MathJax/" rel="tag"># MathJax</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/22/Blog_Skills/在Markdown插入数学公式的图片/" rel="next" title="在Markdown插入数学公式的图片">
+                <i class="fa fa-chevron-left"></i> 在Markdown插入数学公式的图片
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/29/Applied-Nonlinear-Control/Applied-Nonlinear-Control-01/" rel="prev" title="Applied_Nonlinear_Control_01">
+                Applied_Nonlinear_Control_01 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/my_avatar.jpg" alt="Geds">
+          <p class="site-author-name" itemprop="name">Geds</p>
+           
+              <p class="site-description motion-element" itemprop="description">以终为始</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装与配置"><span class="nav-number">1.</span> <span class="nav-text">安装与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装和配置hexo-math"><span class="nav-number">1.1.</span> <span class="nav-text">安装和配置hexo-math</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改Hexo渲染引擎"><span class="nav-number">1.2.</span> <span class="nav-text">更改Hexo渲染引擎</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决语义冲突"><span class="nav-number">1.3.</span> <span class="nav-text">解决语义冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在博客开头打开mathjax开关"><span class="nav-number">1.4.</span> <span class="nav-text">在博客开头打开mathjax开关</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">2.</span> <span class="nav-text">测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#公式单行居中显示"><span class="nav-number">2.1.</span> <span class="nav-text">公式单行居中显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#公式嵌入到句子中"><span class="nav-number">2.2.</span> <span class="nav-text">公式嵌入到句子中</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与MathType结合使用"><span class="nav-number">3.</span> <span class="nav-text">与MathType结合使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Geds</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>
