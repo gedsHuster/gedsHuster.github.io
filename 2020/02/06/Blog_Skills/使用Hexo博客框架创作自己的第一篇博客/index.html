@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Geds&#39;s Blog">
 <meta property="og:description" content="使用Markdown，Hexo和Github进行博客创作。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-13T15:21:29.319Z">
+<meta property="og:updated_time" content="2020-04-13T16:26:24.947Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Hexo博客框架创作自己的第一篇博客">
 <meta name="twitter:description" content="使用Markdown，Hexo和Github进行博客创作。">
@@ -326,7 +326,7 @@
         <p>使用<strong>Markdown</strong>，<strong>Hexo</strong>和<strong>Github</strong>进行博客创作。</p>
 <a id="more"></a>
 
-<h2 id="创作自己的第一篇博客"><a href="#创作自己的第一篇博客" class="headerlink" title="创作自己的第一篇博客"></a>创作自己的第一篇博客</h2><p>首先，介绍一下需要用到的3个工具：<a href="https://daringfireball.net/projects/markdown/" title="https://daringfireball.net/projects/markdown/" target="_blank" rel="noopener"><strong>Markdown</strong></a>，<a href="https://hexo.io/zh-cn/" title="https://hexo.io/zh-cn/" target="_blank" rel="noopener"><strong>Hexo</strong></a>，<a href="https://github.com/" title="https://github.com/" target="_blank" rel="noopener"><strong>Github</strong></a>。</p>
+<h2 id="创作自己的第一篇博客"><a href="#创作自己的第一篇博客" class="headerlink" title="创作自己的第一篇博客 "></a>创作自己的第一篇博客<span id="jump"> </span></h2><p>首先，介绍一下需要用到的3个工具：<a href="https://daringfireball.net/projects/markdown/" title="https://daringfireball.net/projects/markdown/" target="_blank" rel="noopener"><strong>Markdown</strong></a>，<a href="https://hexo.io/zh-cn/" title="https://hexo.io/zh-cn/" target="_blank" rel="noopener"><strong>Hexo</strong></a>，<a href="https://github.com/" title="https://github.com/" target="_blank" rel="noopener"><strong>Github</strong></a>。</p>
 <p><a href="https://daringfireball.net/projects/markdown/" title="https://daringfireball.net/projects/markdown/" target="_blank" rel="noopener"><strong>Markdown</strong></a> 是一款text-to-HTML的转换工具，其允许作者使用一种易于阅读、易于撰写的纯文本格式进行写作，然后将该文本转化为有效的XHTML（或HTML）格式。因此，可以将” <strong>Markdown</strong> “看成两个东西：（1）一种纯文本语法格式。（2）一个软件工具，可将纯文本格式转换为HTML格式。</p>
 <p><a href="https://hexo.io/zh-cn/" title="https://hexo.io/zh-cn/" target="_blank" rel="noopener"><strong>Hexo</strong></a> 是一个博客框架，其可以将基于 <strong>Markdown</strong> 撰写的文章生成美观的静态网页。</p>
 <p><a href="https://github.com/" title="https://github.com/" target="_blank" rel="noopener"><strong>Github</strong></a> 是一个代码托管平台，用于软件项目的版本控制和协作。我们可以直接从 <strong>Github</strong> 仓库使用 <a href="https://help.github.com/en/github/working-with-github-pages" title="https://help.github.com/en/github/working-with-github-pages" target="_blank" rel="noopener"><strong>Github Pages</strong></a> 托管自己的网站。<strong>Github Pages</strong> 是一项静态站点托管服务，它可以直接从 <strong>Github</strong> 仓库获取HTML, CSS和JavaScript文件，并发布到网站。</p>
@@ -365,7 +365,40 @@
 
 <p>这个输出信息，则说明SSH key配置成功。</p>
 <p>此时再运行<code>$ hexo d</code>将不会出现原来的问题。</p>
-<p>更新于2020/04/13</p>
+<p><em>更新于2020/04/13</em></p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>这里补充介绍结合<code>Hexo</code>和<code>Github</code>搭建个人博客的准备工作。从零开始搭建的同学可以从这里可是动手实践。</p>
+<h3 id="注册Github账号"><a href="#注册Github账号" class="headerlink" title="注册Github账号"></a>注册Github账号</h3><p>在<a href="https://github.com/" target="_blank" rel="noopener">Github官网</a>Sign up一个账号即可。注意，注册的邮箱要验证，后面会用到这个邮箱。</p>
+<h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><p>新建一个名为<code>username.github.io</code>的仓库(注意，只能使用这种命名方式)，其中<code>username</code>为你的用户名，填写其他名称无效。将来你的个人博客地址就是<code>https://username.github.io/</code>。</p>
+<h3 id="安装和配置Git"><a href="#安装和配置Git" class="headerlink" title="安装和配置Git"></a>安装和配置Git</h3><p>根据<a href="https://git-scm.com/book/zh/v2/起步-安装-Git" target="_blank" rel="noopener">Git官网</a>的步骤安装即可。Window用户可以打开<code>https://git-scm.com/download/win</code>下载合适的Git版本，如<code>Git-2.19.1-64-bit.exe</code>。点击下载的安装包，一直next，直到安装完成。此时右键点击桌面，你会看到<code>Git Bash Here</code>选项，点击该选项，则会弹出终端界面。在终端中运行<code>$ git --version</code>可查看Git的版本信息。</p>
+<p>接下来要配置用户名和邮箱：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;username&quot;            // 配置用户名，即你的github用户名</span><br><span class="line">$ git config --global user.email &quot;username@email.com&quot; // 配置github注册邮箱</span><br></pre></td></tr></table></figure>
+
+<p>至此，Git安装和配置完毕。</p>
+<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>参考<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo官网</a>官网：</p>
+<blockquote>
+<p>Node.js 为大多数平台提供了官方的 <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">安装程序</a>。对于中国大陆地区用户，可以前往 <a href="https://npm.taobao.org/mirrors/node" target="_blank" rel="noopener">淘宝 Node.js 镜像</a> 下载。</p>
+<p>其它的安装方法：</p>
+<ul>
+<li>Windows：通过 <a href="https://github.com/jasongin/nvs/" target="_blank" rel="noopener">nvs</a>（推荐）或者<a href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener">nvm</a> 安装。</li>
+<li>Mac：使用 <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a> 或 <a href="http://www.macports.org/" target="_blank" rel="noopener">MacPorts</a> 安装。</li>
+<li>Linux（DEB/RPM-based）：从 <a href="https://github.com/nodesource/distributions" target="_blank" rel="noopener">NodeSource</a> 安装。</li>
+<li>其它：使用相应的软件包管理器进行安装，可以参考由 Node.js 提供的 <a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="noopener">指导</a></li>
+</ul>
+<p>对于 Mac 和 Linux 同样建议使用 nvs 或者 nvm，以避免可能会出现的权限问题。</p>
+</blockquote>
+<blockquote>
+<p>Windows 用户<br>使用 Node.js 官方安装程序时，请确保勾选 Add to PATH 选项（默认已勾选）</p>
+</blockquote>
+<blockquote>
+<p><strong>For Mac / Linux 用户</strong></p>
+<p>如果在尝试安装 Hexo 的过程中出现 <code>EACCES</code> 权限错误，请遵循 <a href="https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally" target="_blank" rel="noopener">由 npmjs 发布的指导</a> 修复该问题。强烈建议 <strong>不要</strong> 使用 root、sudo 等方法覆盖权限</p>
+</blockquote>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>按照<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo官网</a>步骤操作即可。</p>
+<blockquote>
+<p>$ npm install hexo-cli -g<br>$ hexo init blog                   // 生成hexo项目文件夹<br>$ cd blog<br>$ npm install<br>$ hexo server</p>
+</blockquote>
+<p>至此，就可以按照<a href="#jump">创作自己的第一篇博客</a>小节中的四个步骤开始博客创作之旅了。</p>
+<p><em>更新于2020年04月14日00:26:07</em></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a href="https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html" target="_blank" rel="noopener">使用hexo+github搭建免费个人博客详细教程</a></li>
 </ul>
@@ -541,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创作自己的第一篇博客"><span class="nav-number">1.</span> <span class="nav-text">创作自己的第一篇博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置SSH-key"><span class="nav-number">2.</span> <span class="nav-text">配置SSH key</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要配置"><span class="nav-number">2.1.</span> <span class="nav-text">为什么要配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何配置"><span class="nav-number">2.2.</span> <span class="nav-text">如何配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查是否配置成功"><span class="nav-number">2.3.</span> <span class="nav-text">检查是否配置成功</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创作自己的第一篇博客"><span class="nav-number">1.</span> <span class="nav-text">创作自己的第一篇博客 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置SSH-key"><span class="nav-number">2.</span> <span class="nav-text">配置SSH key</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要配置"><span class="nav-number">2.1.</span> <span class="nav-text">为什么要配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何配置"><span class="nav-number">2.2.</span> <span class="nav-text">如何配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查是否配置成功"><span class="nav-number">2.3.</span> <span class="nav-text">检查是否配置成功</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">3.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册Github账号"><span class="nav-number">3.1.</span> <span class="nav-text">注册Github账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建仓库"><span class="nav-number">3.2.</span> <span class="nav-text">创建仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装和配置Git"><span class="nav-number">3.3.</span> <span class="nav-text">安装和配置Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Node-js"><span class="nav-number">3.4.</span> <span class="nav-text">安装Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Hexo"><span class="nav-number">3.5.</span> <span class="nav-text">安装Hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
