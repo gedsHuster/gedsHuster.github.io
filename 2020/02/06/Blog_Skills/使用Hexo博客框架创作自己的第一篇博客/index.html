@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Geds&#39;s Blog">
 <meta property="og:description" content="使用Markdown，Hexo和Github进行博客创作。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-23T09:34:11.572Z">
+<meta property="og:updated_time" content="2020-04-13T15:21:29.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Hexo博客框架创作自己的第一篇博客">
 <meta name="twitter:description" content="使用Markdown，Hexo和Github进行博客创作。">
@@ -345,6 +345,30 @@
 <li>将静态网页部署到Github上之后，如果网站<code>username.github.io</code>上没有全部更新，运行<code>$ hexo clean</code>清除缓存后再运行<code>$ hexo deploy</code>进行网站部署。</li>
 </ul>
 <p><em>更新于2020/2/8 18:39:50</em> </p>
+<h2 id="配置SSH-key"><a href="#配置SSH-key" class="headerlink" title="配置SSH key"></a>配置SSH key</h2><h3 id="为什么要配置"><a href="#为什么要配置" class="headerlink" title="为什么要配置"></a>为什么要配置</h3><p>如果在运行<code>$ hexo d</code>将post部署到自己的github仓库中时出现这个问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Permission denied (publickey).</span><br><span class="line">fatal: Could not read from remote repository.</span><br></pre></td></tr></table></figure>
+
+<p>则说明，要么你的github不存在名为<code>username.github.io</code>的仓库，其中<code>username</code>为你的github用户名。解决办法是新建一个这样的仓库即可。注意，该仓库中的<code>username</code>一定要是你的用户名，其他名称无效。</p>
+<p>另外一种可能原因，你的电脑没有权限向github提交代码。解决办法就是配置SSH key，建立本地与服务器的连接。</p>
+<h3 id="如何配置"><a href="#如何配置" class="headerlink" title="如何配置"></a>如何配置</h3><p>首先，检查本机已存在的ssh密钥:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/.ssh</span><br></pre></td></tr></table></figure>
+
+<p>​        如果提示<code>No such file or directory</code>则说明本地没有ssh密钥。</p>
+<p>下面来生成ssh密钥：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;你的邮箱地址&quot;</span><br></pre></td></tr></table></figure>
+
+<p>​        然后，连续按三次Enter键，最终会生成～/.ssh文件夹。打开该文件夹下的<code>id_rsa.pub</code>文件，其中内容就是SSH key。复制该内容，打开你的github主页，进入<code>个人设置-&gt;SSH and GPG keys-&gt;New SSH key</code>。将刚复制的内容粘贴到key那一栏里。Title随便填一个，保存。</p>
+<h3 id="检查是否配置成功"><a href="#检查是否配置成功" class="headerlink" title="检查是否配置成功"></a>检查是否配置成功</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>如果看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi gedsHuster! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+
+<p>这个输出信息，则说明SSH key配置成功。</p>
+<p>此时再运行<code>$ hexo d</code>将不会出现原来的问题。</p>
+<p>更新于2020/04/13</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html" target="_blank" rel="noopener">使用hexo+github搭建免费个人博客详细教程</a></li>
+</ul>
 
       
     </div>
@@ -517,7 +541,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创作自己的第一篇博客"><span class="nav-number">1.</span> <span class="nav-text">创作自己的第一篇博客</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创作自己的第一篇博客"><span class="nav-number">1.</span> <span class="nav-text">创作自己的第一篇博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置SSH-key"><span class="nav-number">2.</span> <span class="nav-text">配置SSH key</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要配置"><span class="nav-number">2.1.</span> <span class="nav-text">为什么要配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何配置"><span class="nav-number">2.2.</span> <span class="nav-text">如何配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查是否配置成功"><span class="nav-number">2.3.</span> <span class="nav-text">检查是否配置成功</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
